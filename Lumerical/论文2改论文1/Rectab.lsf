@@ -1,0 +1,341 @@
+selectall;
+delete;
+nm=1e-9;
+um=1e-6;
+N = 5;M =20;
+S = 0.9*um;
+L = 1.2*um;
+
+r1=[
+0.36 , 0.24 ;
+0.17 , 0.35 ;
+0.59 , 0.56 ;
+0.32 , 0.29 ;
+0.45 , 0.26 ;
+0.57 , 0.25 ;
+0.58 , 0.58 ;
+0.33 , 0.28 ;
+0.42 , 0.25 ;
+0.19 , 0.3 ;
+0.3 , 0.19 ;
+0.25 , 0.42 ;
+0.28 , 0.33 ;
+0.58 , 0.58 ;
+0.25 , 0.57 ;
+0.26 , 0.45 ;
+0.29 , 0.32 ;
+0.56 , 0.59 ;
+0.35 , 0.17 ;
+0.24 , 0.36 ];
+r2=[
+0.35 , 0.23 ;
+0.44 , 0.59 ;
+0.6 , 0.59 ;
+0.32 , 0.29 ;
+0.44 , 0.26 ;
+0.56 , 0.25 ;
+0.58 , 0.58 ;
+0.32 , 0.28 ;
+0.4 , 0.25 ;
+0.16 , 0.32 ;
+0.32 , 0.16 ;
+0.25 , 0.4 ;
+0.28 , 0.32 ;
+0.58 , 0.58 ;
+0.25 , 0.56 ;
+0.26 , 0.44 ;
+0.29 , 0.32 ;
+0.59 , 0.6 ;
+0.59 , 0.44 ;
+0.23 , 0.35 ];
+r3=[
+0.36 , 0.21 ;
+0.44 , 0.56 ;
+0.55 , 0.59 ;
+0.57 , 0.59 ;
+0.41 , 0.26 ;
+0.23 , 0.32 ;
+0.58 , 0.57 ;
+0.32 , 0.27 ;
+0.39 , 0.24 ;
+0.33 , 0.59 ;
+0.59 , 0.33 ;
+0.24 , 0.39 ;
+0.27 , 0.32 ;
+0.58 , 0.57 ;
+0.32 , 0.23 ;
+0.26 , 0.41 ;
+0.59 , 0.57 ;
+0.59 , 0.55 ;
+0.56 , 0.44 ;
+0.21 , 0.36 ];
+r4=[
+0.6 , 0.12 ;
+0.33 , 0.45 ;
+0.53 , 0.58 ;
+0.31 , 0.27 ;
+0.36 , 0.26 ;
+0.47 , 0.58 ;
+0.28 , 0.28 ;
+0.31 , 0.26 ;
+0.37 , 0.22 ;
+0.39 , 0.5 ;
+0.5 , 0.39 ;
+0.22 , 0.37 ;
+0.26 , 0.31 ;
+0.28 , 0.28 ;
+0.58 , 0.47 ;
+0.26 , 0.36 ;
+0.27 , 0.31 ;
+0.58 , 0.53 ;
+0.45 , 0.33 ;
+0.12 , 0.6 ];
+r5=[
+0.27 , 0.41 ;
+0.38 , 0.51 ;
+0.25 , 0.25 ;
+0.31 , 0.25 ;
+0.36 , 0.24 ;
+0.36 , 0.43 ;
+0.6 , 0.36 ;
+0.59 , 0.48 ;
+0.49 , 0.13 ;
+0.31 , 0.39 ;
+0.39 , 0.31 ;
+0.13 , 0.49 ;
+0.48 , 0.59 ;
+0.36 , 0.6 ;
+0.43 , 0.36 ;
+0.24 , 0.36 ;
+0.25 , 0.31 ;
+0.25 , 0.25 ;
+0.51 , 0.38 ;
+0.41 , 0.27 ];
+
+#r8 = [[0.45 , 0.235],
+        #[0.36 , 0.28 ],
+        #[0.575, 0.345],
+        #[0.49 , 0.485],
+        #[0.495, 0.465],
+        #[0.54 , 0.405],
+        #[0.395, 0.515],
+        #[0.595, 0.325]];
+
+r = randmatrix(5,20,2);
+r(1,:,:)=r1;
+r(2,:,:)=r2;
+r(3,:,:)=r3;
+r(4,:,:)=r4;
+r(5,:,:)=r5;
+#first#
+r1 = 0.415;
+r2 = 0.54;
+
+#second#
+#r1 = 0.545;
+#r2 = 0.395;
+#r1 = 0.475;
+#r2 = 0.39;
+Theta = [[  -0.     ,   -8.70445  ,  -34.752235 ,  -77.951096 ,
+        -137.98828  ,  145.55794  ,   53.205887 ,  -54.448162 ];
+       [  -8.70445  ,  -17.397827 ,  -43.413273 ,  -86.558975 ,
+        -146.52394  ,  137.1131   ,   44.868248 ,  -62.664444 ];
+       [ -34.752235 ,  -43.413273 ,  -69.332596 , -112.320595 ,
+        -172.06895  ,  111.83877  ,   19.91246  ,  -87.258316 ];
+       [ -77.951096 ,  -86.558975 , -112.320595 , -155.049    ,
+         145.55794  ,   69.90955  ,  -21.491844 , -128.06766  ];
+       [-137.98828  , -146.52394  , -172.06895  ,  145.55794  ,
+          86.65218  ,   11.6129055,  -79.06952  ,  175.172    ];
+       [ 145.55794  ,  137.1131   ,  111.83877  ,   69.90955  ,
+          11.6129055,  -62.664444 , -152.44669  ,  102.81817  ];
+       [  53.205887 ,   44.868248 ,   19.91246  ,  -21.491844 ,
+         -79.06952  , -152.44669  ,  118.83698  ,   15.312081 ];
+       [ -54.448162 ,  -62.664444 ,  -87.258316 , -128.06766  ,
+         175.172    ,  102.81817  ,   15.312081 ,  -86.83421  ]];
+Theta = Theta/2;
+for (i=1:N){ 
+for(j=1:M){
+    x = (j-1)*S; y=(i-1)*S+0.45*um;
+    addrect;
+    name = "rect"+num2str(i)+"_"+num2str(j);
+    set("name",name);#名称              
+    set("material","Si (Silicon) - Palik");#材料
+    #set("render type","wireframe");   # 渲染方式：线框，减小显卡压力
+    set("x",x);#设置x中心点坐标   
+    set("y",y);#设置y中心点坐标
+    set("x span",r(i,j,2)*um );#设置x方向宽度
+    set("y span",r(i,j,1)*um );#设置y方向宽度     
+    #set("z max",1e-7);#设置z方向最大值
+    #set("z min",-1e-6);#设置z方向最小值
+    set("z min",0);
+    set("z max",L);
+    set("first axis","z");#设置第一转轴
+    set("rotation 1",45);#设置第一旋转角
+    hang = "hang_"+num2str(i);
+    addtogroup("surface");
+    addtogroup("surface_1");
+    addtogroup(hang);
+    
+    
+    
+    #name = "circle"+num2str(i)+"_"+num2str(j);
+    #set("name",name);
+    #set("material","Si (Silicon) - Palik");
+    #set("x",x);   
+    #set("y",y);
+    #set("z min",0);
+    #set("z max",L);
+    #set("make ellipsoid",1);
+    #setnamed(name,"radius", r(i,j,1)*um );
+    #setnamed(name,"radius 2", r(i,j,2)*um );
+##    setnamed(name,"radius", r1*um );
+##    setnamed(name,"radius 2", r2*um );
+    ##set("first axis","z");    # 指定旋转轴为z轴
+    ##set("rotation 1",Theta(i,j));  # 旋转 Theta角（degree）
+    #hang = "hang_"+num2str(i);
+    #addtogroup("surface");
+    #addtogroup("surface_1");
+    #addtogroup(hang);
+    
+}
+}
+
+
+for(i=1:N){ 
+for(j=1:M){
+    x = 1*(j-1)*S; y=-1*(i-1)*S-0.45*um;
+    addrect;
+    name = "rect"+num2str(i)+"_"+num2str(j);
+    set("name",name);#名称              
+    set("material","Si (Silicon) - Palik");#材料
+    #set("render type","wireframe");   # 渲染方式：线框，减小显卡压力
+    set("x",x);#设置x中心点坐标   
+    set("y",y);#设置y中心点坐标
+    set("x span",r(i,j,2)*um );#设置x方向宽度
+    set("y span",r(i,j,1)*um );#设置y方向宽度     
+    #set("z max",1e-7);#设置z方向最大值
+    #set("z min",-1e-6);#设置z方向最小值
+    set("z min",0);
+    set("z max",L);
+    set("first axis","z");#设置第一转轴
+    set("rotation 1",45);#设置第一旋转角
+#    setnamed(name,"radius", r1*um );
+#    setnamed(name,"radius 2", r2*um );
+    #set("first axis","z");    # 指定旋转轴为z轴
+    #set("rotation 1",Theta(i,j));  # 旋转 Theta角（degree）
+    hang = "hang_"+num2str(i);
+    addtogroup("surface");
+    addtogroup("surface_4");
+    addtogroup(hang);
+#    if(i==1&j==1){
+#        delete;}
+    
+}
+}
+
+#---------------------------------添加结构-------------------------------------------------------
+#----------------------------------------------------------------------------------------
+
+## %%
+
+
+
+# 长方体衬底 Rectangle
+
+
+addrect;
+set("name","Rectangle");#名称                   
+set("material","SiO2 (Glass) - Palik");#材料
+#set("render type","wireframe");   # 渲染方式：线框，减小显卡压力,默认为detailed
+set("x",8.55*um);#设置x中心点坐标   
+set("y",0);#设置y中心点坐标
+set("x span",22*um);#设置x方向宽度
+set("y span",12*um);#设置y方向宽度
+set("z max",0);#设置z方向最大值
+set("z min",-0.2*um);#设置z方向最小值
+
+
+
+
+
+# FDTD
+
+
+addfdtd;
+set("dimension",2);#三维仿真区域
+set("simulation time",3e-11);#30000fs
+set("x",8.55*um);
+set("y",0);
+set("z min",-0.5*um);
+set("z max",20*um);
+set("x span",20*um);
+set("y span",10*um);
+#set("x min bc","periodic");#设置x方向周期边界条件
+#set("y min bc","periodic");#设置y方向周期边界条件
+#set("Mesh type","auto non-uniform");#仿真网格为自动精度
+set("Mesh accuracy",1);#低精度
+
+
+
+
+
+
+
+
+# Source  (Plane wave）
+
+
+addplane;
+#set("injection axis","z");#基准轴
+#set("direction","backward");#入射方向
+set("x",8.55*um);
+set("x span",22*um);
+set("y",0);
+set("y span",12*um);
+set("z",-0.02*um);
+set("wavelength start",1.55*um);#起始波长
+set("wavelength stop",1.55*um);#截止波长
+#set("amplitude",1);#振幅，默认为1，无特殊需要可不设置
+#set("phase",0);#初始相位，角度制，默认为0，无特殊需要可不设置
+#set("angle theta",30);#入射角theta
+#set("angle phi",0);#入射角phi
+set("polarization angle",45);#偏振角
+
+
+
+
+
+
+
+
+
+#Monitor  Frequency-domain field profile
+
+
+addprofile;
+set("name","z=17.5");
+set("monitor type","2D Z-normal");#xy面监视器
+set("x",8.55*um);
+set("x span",22*um);
+set("y",0);
+set("y span",12*um);
+set("z",17.5*um);
+
+addprofile;
+set("name","z=14.3565");
+set("monitor type","2D Z-normal");#xy面监视器
+set("x",8.55*um);
+set("x span",22*um);
+set("y",0);
+set("y span",12*um);
+set("z",14.613*um);
+
+addprofile;
+set("name","y=0");
+set("monitor type","2D Y-normal");#xz面监视器
+set("x",8.55*um);
+set("x span",22*um);
+set("y",0);
+set("z min",-1*um);
+set("z max",22*um);
+
